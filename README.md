@@ -26,10 +26,9 @@ This image it's for development. **Optimize to use in production!**
 * `exif`
 * `gd`
 * `ldap`
-* `mongodb`
 
 ## Installing
-    docker pull hitalos/php
+    docker pull yangweicai/laravel-run
 
 ## Using
 
@@ -42,7 +41,7 @@ Where $PWD is the project folder.
 Create a `docker-compose.yml` file in the root folder of project using this as a template:
 ```
 web:
-    image: hitalos/php:latest
+    image: yangweicai/laravel-run:latest
     ports:
         - 80:80
     volumes:
@@ -58,7 +57,7 @@ Then run using this command:
 If you want to use a database, you can create your `docker-compose.yml` with two containers.
 ```
 web:
-    image: hitalos/php:latest
+    image: yangweicai/laravel-run:latest
     ports:
         - 80:80
     volumes:
