@@ -4,10 +4,10 @@ LABEL maintainer="yangweicai <yangweicai.123@163.com>"
 # 更新系统版本
 RUN apk update && apk upgrade
 
-# Install basic dependencies
+# 安装git
 RUN apk -u add git
 
-# Install PHP extensions
+# 安装 PHP 扩展
 ADD install-php.sh /usr/sbin/install-php.sh
 ENV XDEBUG_VERSION 2.9.8
 RUN /usr/sbin/install-php.sh
