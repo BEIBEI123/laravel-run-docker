@@ -7,6 +7,13 @@ RUN apk update && apk upgrade
 # 安装git
 RUN apk -u add git
 
+# 安装glibc
+RUN apk add --no-cache bash && \
+    wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
+    wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.30-r0/glibc-2.30-r0.apk && \
+    apk add --no-cache glibc-2.30-r0.apk && \
+    rm -rf glibc-2.30-r0.apk
+
 # 安装 PHP 扩展
 RUN apk add bzip2 file re2c freetds freetype icu libintl libldap libjpeg libmcrypt libpng libpq libwebp libzip
 RUN apk add autoconf bzip2-dev freetds-dev freetype-dev g++ gcc gettext-dev icu-dev jpeg-dev libmcrypt-dev libpng-dev libwebp-dev libxml2-dev libzip-dev make openldap-dev postgresql-dev
