@@ -1,5 +1,5 @@
 FROM php:alpine
-LABEL maintainer="hitalos <hitalos@gmail.com>"
+LABEL maintainer="yangweicai <yangweicai.123@163.com>"
 
 # Comment this to improve stability on "auto deploy" environments
 RUN apk update && apk upgrade
