@@ -1,7 +1,7 @@
 FROM php:alpine
 LABEL maintainer="yangweicai <yangweicai.123@163.com>"
 
-# Comment this to improve stability on "auto deploy" environments
+# 更新系统版本
 RUN apk update && apk upgrade
 
 # Install basic dependencies
