@@ -18,7 +18,7 @@ RUN apk add --no-cache bash && \
 RUN apk add bzip2 file re2c freetds freetype icu libintl libldap libjpeg libmcrypt libpng libpq libwebp libzip
 RUN apk add autoconf bzip2-dev freetds-dev freetype-dev g++ gcc gettext-dev icu-dev jpeg-dev libmcrypt-dev libpng-dev libwebp-dev libxml2-dev libzip-dev make openldap-dev postgresql-dev
 
-RUN docker-php-ext-configure gd --with-jpeg-dir=usr/ --with-freetype-dir=usr/ --with-webp-dir=usr/
+RUN docker-php-ext-configure gd --with-webp=/usr/include/webp --with-jpeg=/usr/include --with-freetype=/usr/include/freetype2
 RUN docker-php-ext-configure ldap --with-libdir=lib/
 RUN docker-php-ext-configure pdo_dblib --with-libdir=lib/
 RUN docker-php-ext-install bcmath bz2 exif gd gettext intl ldap pdo_dblib pdo_mysql pdo_pgsql xmlrpc zip
