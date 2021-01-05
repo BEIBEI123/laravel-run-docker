@@ -14,35 +14,13 @@ RUN apk add --no-cache bash && \
     apk add --no-cache glibc-2.30-r0.apk && \
     rm -rf glibc-2.30-r0.apk
 
-RUN apk add --update --no-cache \
-    build-base \
-    freetype-dev \
-    libjpeg-turbo-dev \
-    libpng-dev \
-    libzip-dev \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
-    git \
-    oniguruma-dev \
-    curl \
-    autoconf \
-    libmcrypt-dev \
-    libxml2-dev \
-    libsodium \
-    gd-dev \
-    supervisor \
-    openssl \
-    php7-openssl \
+RUN apk add build-base freetype-dev libjpeg-turbo-dev libpng-dev libzip-dev zip jpegoptim optipng pngquant gifsicle vim unzip git oniguruma-dev curl autoconf libmcrypt-dev libxml2-dev libsodium gd-dev supervisor openssl php7-openssl extend install
 
-
-# extend install
+# 安装php扩展
 RUN docker-php-ext-install bcmath ctype fileinfo json mysqli pdo pdo_mysql tokenizer xml opcache 
 RUN docker-php-ext-configure opcache --enable-opcache 
 RUN docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/ 
 RUN docker-php-ext-configure zip 
-
 
 # 安装 composer
 RUN cd /tmp && php -r "readfile('https://getcomposer.org/installer');" | php && \
