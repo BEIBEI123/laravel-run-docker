@@ -21,7 +21,7 @@ RUN apk add autoconf bzip2-dev freetds-dev freetype-dev g++ gcc gettext-dev icu-
 RUN docker-php-ext-configure gd --with-webp=/usr/include/webp --with-jpeg=/usr/include --with-freetype=/usr/include/freetype2
 RUN docker-php-ext-configure ldap --with-libdir=lib/
 RUN docker-php-ext-configure pdo_dblib --with-libdir=lib/
-RUN docker-php-ext-install bcmath bz2 exif gd gettext intl ldap pdo_dblib pdo_mysql pdo_pgsql xmlrpc zip
+RUN docker-php-ext-install bcmath bz2 exif gd gettext intl ldap pdo_dblib pdo_mysql pdo_pgsql zip
 
 # 安装 composer
 RUN cd /tmp && php -r "readfile('https://getcomposer.org/installer');" | php && \
