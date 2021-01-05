@@ -26,18 +26,6 @@ docker-php-ext-configure gd --with-jpeg-dir=usr/ --with-freetype-dir=usr/ --with
 docker-php-ext-configure ldap --with-libdir=lib/
 docker-php-ext-configure pdo_dblib --with-libdir=lib/
 
-# Download mongo extension
-cd /tmp && \
-    git clone https://github.com/mongodb/mongo-php-driver.git && \
-    cd mongo-php-driver && \
-    git submodule update --init && \
-    phpize && \
-    ./configure && \
-    make all && \
-    make install && \
-    echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini && \
-    rm -rf /tmp/mongo-php-driver
-
 docker-php-ext-install \
     bcmath \
     bz2 \
@@ -70,6 +58,3 @@ apk del $TMP
 
 # Install PHPUnit
 curl -sSL -o /usr/bin/phpunit https://phar.phpunit.de/phpunit.phar && chmod +x /usr/bin/phpunit
-
-# Set timezone
-# RUN echo America/Maceio > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
