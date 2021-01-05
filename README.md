@@ -1,7 +1,5 @@
 # PHP
-Docker image to run basic PHP projects.
-
-This image it's for development. **Optimize to use in production!**
+这是一个laravel 的docker部署基础镜像
 
 ## Tags
 * [**`latest`**](https://github.com/hitalos/php/blob/master/Dockerfile): For simple projects with faster deploy.
