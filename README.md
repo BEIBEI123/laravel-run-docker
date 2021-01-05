@@ -1,5 +1,3 @@
-![Docker Pulls](https://img.shields.io/docker/pulls/hitalos/php.svg)
-
 # PHP
 Docker image to run basic PHP projects.
 
