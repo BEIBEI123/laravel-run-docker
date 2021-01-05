@@ -50,5 +50,5 @@ cd /tmp && php -r "readfile('https://getcomposer.org/installer');" | php && \
 
 apk del $TMP
 
-# Install PHPUnit
+# 安装 PHPUnit
 curl -sSL -o /usr/bin/phpunit https://phar.phpunit.de/phpunit.phar && chmod +x /usr/bin/phpunit
