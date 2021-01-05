@@ -14,13 +14,14 @@ RUN apk add --no-cache bash && \
     apk add --no-cache glibc-2.30-r0.apk && \
     rm -rf glibc-2.30-r0.apk
 
-RUN apk add build-base freetype-dev libjpeg-turbo-dev libpng-dev libzip-dev zip jpegoptim optipng pngquant gifsicle vim unzip git oniguruma-dev curl autoconf libmcrypt-dev libxml2-dev libsodium gd-dev supervisor openssl php7-openssl extend install
+# 安装 PHP 扩展
+RUN apk add bzip2 file re2c freetds freetype icu libintl libldap libjpeg libmcrypt libpng libpq libwebp libzip
+RUN apk add autoconf bzip2-dev freetds-dev freetype-dev g++ gcc gettext-dev icu-dev jpeg-dev libmcrypt-dev libpng-dev libwebp-dev libxml2-dev libzip-dev make openldap-dev postgresql-dev
 
-# 安装php扩展
-RUN docker-php-ext-install bcmath ctype fileinfo json mysqli pdo pdo_mysql tokenizer xml opcache 
-RUN docker-php-ext-configure opcache --enable-opcache 
-RUN docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/ 
-RUN docker-php-ext-configure zip 
+RUN docker-php-ext-configure gd --with-webp=/usr/include/webp --with-jpeg=/usr/include --with-freetype=/usr/include/freetype2
+RUN docker-php-ext-configure ldap --with-libdir=lib/
+RUN docker-php-ext-configure pdo_dblib --with-libdir=lib/
+RUN docker-php-ext-install bcmath bz2 exif gd gettext intl ldap pdo_dblib pdo_mysql pdo_pgsql zip
 
 # 安装 composer
 RUN cd /tmp && php -r "readfile('https://getcomposer.org/installer');" | php && \
@@ -32,11 +33,6 @@ RUN curl -sSL -o /usr/bin/phpunit https://phar.phpunit.de/phpunit.phar && chmod 
 
 # Download trusted certs
 RUN mkdir -p /etc/ssl/certs && update-ca-certificates
-
-#  Clean
-RUN rm -rf /var/cache/apk/* 
-RUN docker-php-source delete 
-RUN rm -rf /root/.composer/cache
 
 WORKDIR /var/www
 CMD ["/usr/local/bin/php"]
