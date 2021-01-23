@@ -1,5 +1,10 @@
 FROM php:7.4-alpine
 
+LABEL maintainer="yangweicai <yangweicai.123@163.com>"
+
+# 更新系统版本
+RUN apk update && apk upgrade
+
 # Install dev dependencies
 RUN apk add --no-cache --virtual .build-deps \
     $PHPIZE_DEPS \
@@ -55,7 +60,7 @@ RUN docker-php-ext-enable \
 # Configure php extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
-# Install php extensions
+# 安装 PHP 扩展
 RUN docker-php-ext-install \
     bcmath \
     calendar \
@@ -82,6 +87,9 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 
 # Install PHP_CodeSniffer
 RUN composer global require "squizlabs/php_codesniffer=*"
+
+# Download trusted certs
+RUN mkdir -p /etc/ssl/certs && update-ca-certificates
 
 # Cleanup dev dependencies
 RUN apk del -f .build-deps
